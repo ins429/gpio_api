@@ -28,7 +28,7 @@ defmodule GpioApi.MixProject do
       {:plug, "~> 1.5"},
       {:poison, "~> 3.1"},
       {:elixir_ale, "~> 1.0"},
-      {:distillery, "~> 2.0"}
+      {:distillery, "~> 1.5"}
     ]
   end
 end
