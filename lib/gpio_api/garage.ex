@@ -1,21 +1,22 @@
 defmodule GpioApi.Garage do
   import Plug.Conn
+  alias ElixirALE.GPIO
 
   def toggle(conn = %Plug.Conn{params: %{"password" => password}}) do
     case validate_password(password) do
       :ok ->
-        {:ok, pid} = Gpio.start_link(14, :output)
-        read = Gpio.read(pid)
+        {:ok, pid} = GPIO.start_link(14, :output)
+        read = GPIO.read(pid)
 
         case read do
           0 ->
-            Gpio.write(pid, 1)
+            GPIO.write(pid, 1)
 
           1 ->
-            Gpio.write(pid, 0)
+            GPIO.write(pid, 0)
         end
 
-        Gpio.release(pid)
+        GPIO.release(pid)
 
         send_resp(conn, 200, "ok")
 
