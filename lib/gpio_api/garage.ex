@@ -10,22 +10,22 @@ defmodule GpioApi.Garage do
 
         case read do
           0 ->
-            Gpio.write(pid, 1)
+            GPIO.write(pid, 1)
             :timer.sleep(500)
-            Gpio.write(pid, 0)
+            GPIO.write(pid, 0)
             :timer.sleep(500)
 
           1 ->
-            Gpio.write(pid, 0)
+            GPIO.write(pid, 0)
             :timer.sleep(500)
 
           true ->
-            Gpio.write(pid, 0)
+            GPIO.write(pid, 0)
             :timer.sleep(500)
         end
 
-        Gpio.write(pid, 1)
-        Gpio.release(pid)
+        GPIO.write(pid, 1)
+        GPIO.release(pid)
 
         send_resp(conn, 200, "ok")
 
